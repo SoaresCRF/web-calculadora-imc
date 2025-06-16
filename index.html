@@ -1,92 +1,134 @@
-<!doctype html>
-<html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-BR">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="Calculadora de IMC online para verificar sua classificação de peso de forma rápida e fácil." />
     <title>Calculadora IMC</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 </head>
 
-<body>
-    <div class="d-flex justify-content-center align-items-center vh-100">
-        <div class="p-4 shadow rounded bg-white">
-            <h1 class="text-center mb-4">Calculadora IMC</h1>
+<body class="bg-light">
 
-            <div class="form-group">
-                <label for="altura-range">Altura:</label>
-                <input id="altura-range" type="range" class="form-range" min="20" max="250" value="170" />
-                <div class="input-group-text mt-2">
-                    <input id="altura" class="form-control" maxlength="3" value="170" />
-                    <span class="input-group-text">cm</span>
+    <main class="d-flex justify-content-center align-items-center min-vh-100 px-3">
+        <section class="container-sm p-4 shadow rounded-4 bg-white w-100" aria-labelledby="titulo-imc"
+            style="max-width: 500px;">
+
+            <!-- Título -->
+            <header class="mb-4">
+                <h1 id="titulo-imc" class="text-center fs-3 fs-md-2 fw-semibold">
+                    Calculadora IMC
+                </h1>
+            </header>
+
+            <!-- Formulário -->
+            <form aria-describedby="status-imc" novalidate>
+
+                <!-- Altura -->
+                <div class="mb-4">
+                    <label for="altura-range" class="form-label">Altura (cm)</label>
+                    <input id="altura-range" type="range" class="form-range" min="20" max="250" value="170"
+                        aria-describedby="altura-help">
+                    <div id="altura-help" class="form-text">Ajuste sua altura ou digite abaixo.</div>
+
+                    <div class="input-group mt-2">
+                        <input id="altura" name="altura" type="number" class="form-control form-control-sm text-end"
+                            min="20" max="250" value="170" aria-label="Altura em centímetros">
+                        <span class="input-group-text">cm</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <label for="peso-range">Peso:</label>
-                <input id="peso-range" type="range" class="form-range" min="20" max="300" value="70" />
-                <div class="input-group-text mt-2">
-                    <input id="peso" class="form-control" maxlength="3" value="70" />
-                    <span class="input-group-text">kg</span>
+                <!-- Peso -->
+                <div class="mb-4">
+                    <label for="peso-range" class="form-label">Peso (kg)</label>
+                    <input id="peso-range" type="range" class="form-range" min="20" max="300" value="70"
+                        aria-describedby="peso-help">
+                    <div id="peso-help" class="form-text">Ajuste seu peso ou digite abaixo.</div>
+
+                    <div class="input-group mt-2">
+                        <input id="peso" name="peso" type="number" class="form-control form-control-sm text-end"
+                            min="20" max="300" value="70" aria-label="Peso em quilogramas">
+                        <span class="input-group-text">kg</span>
+                    </div>
                 </div>
-            </div>
 
-            <div id="div-status-imc" class="text-center my-3">
-                <p id="status-imc" class="fw-bold">24.22 - Normal</p>
-            </div>
+                <!-- Resultado -->
+                <section id="div-status-imc" class="text-center my-4">
+                    <output id="status-imc" class="fw-semibold fs-5 fs-md-4 text-success" aria-live="polite"
+                        aria-atomic="true">
+                        24.22 - Normal
+                    </output>
+                </section>
+            </form>
 
-            <table class="table table-hover table-bordered">
-                <thead class="table-secondary">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">IMC</th>
-                        <th scope="col">Classificação</th>
-                        <th scope="col">Obesidade (grau)</th>
-                    </tr>
-                </thead>
-                <tbody class="table-light">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Menor que 18,5</td>
-                        <td>Magreza</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Entre 18,5 e 24,9</td>
-                        <td>Normal</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Entre 25,0 e 29,9</td>
-                        <td>Sobrepeso</td>
-                        <td>I</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Entre 30,0 e 39,9</td>
-                        <td>Obesidade</td>
-                        <td>II</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Maior que 40,0</td>
-                        <td>Obesidade Grave</td>
-                        <td>III</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+            <!-- Tabela IMC -->
+            <section aria-labelledby="tabela-classificacao">
+                <h2 id="tabela-classificacao" class="visually-hidden">Tabela de Classificação do IMC</h2>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered align-middle mb-0">
+                        <thead class="table-secondary text-center">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">IMC</th>
+                                <th scope="col">Classificação</th>
+                                <th scope="col">Obesidade</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-light text-center">
+                            <tr data-classificacao="Magreza">
+                                <th scope="row">1</th>
+                                <td>Menor que 18,5</td>
+                                <td>Magreza</td>
+                                <td>0</td>
+                            </tr>
+                            <tr data-classificacao="Normal">
+                                <th scope="row">2</th>
+                                <td>18,5 - 24,9</td>
+                                <td>Normal</td>
+                                <td>0</td>
+                            </tr>
+                            <tr data-classificacao="Sobrepeso">
+                                <th scope="row">3</th>
+                                <td>25,0 - 29,9</td>
+                                <td>Sobrepeso</td>
+                                <td>I</td>
+                            </tr>
+                            <tr data-classificacao="Obesidade">
+                                <th scope="row">4</th>
+                                <td>30,0 - 39,9</td>
+                                <td>Obesidade</td>
+                                <td>II</td>
+                            </tr>
+                            <tr data-classificacao="Obesidade Grave">
+                                <th scope="row">5</th>
+                                <td>Maior que 40,0</td>
+                                <td>Obesidade Grave</td>
+                                <td>III</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+    </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <!-- JavaScript -->
+    <script src="assets/js/script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"
+        defer></script>
+
 </body>
 
 </html>

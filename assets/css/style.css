@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+
+/* Reset básico e fonte */
+html,
+body {
+    background-color: #f8f9fa;
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* Labels com espaçamento */
+label {
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+/* Status do IMC */
+#status-imc {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* Acessibilidade: melhor foco nos inputs */
+input:focus,
+input[type="range"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Melhor alinhamento e espaçamento */
+input[type="number"] {
+    text-align: right;
+}
